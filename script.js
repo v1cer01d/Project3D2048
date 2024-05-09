@@ -1,13 +1,62 @@
-let colorlist = ['gold', 'yellow', 'turquoise', 'red']
+var img;
+
+var imggm;
+
+var screen = "MENU";
+
+
+
+
+function preload() {
+  img = loadImage('OIG2.jpg');
+  imggm = loadImage('OIG4.jfif');
+}
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  
-  background(228);
+  createCanvas(600, 600);
+  start = createButton('Start');
 }
 
+var start;
+
 function draw() {
-  noStroke()
-  fill(random(colorlist));
-  ellipse(mouseX, mouseY, 10000, 10000);
+  if (screen == "MENU") {
+    background(img);
+    start.position(300,270);
+    start.mousePressed(startGame);
+
+    
+    let l = createButton('2048');
+    l.position(300,10);
+    
+    text("Ваш рахунок", 10, 20);
+    text("Список лідерів", 505, 20);
+  } 
+  if (screen == "GAME") {
+    background(imggm);
+    rect(400, 300, 100, 100);
+    
+    //
+  } 
+
 }
+
+function startGame() {
+  screen = "GAME";
+  print(start);
+  start.remove();
+}
+
+// start.mousePressed()
+//   if(screen === "MENU"){
+//     screen ="GAME";
+//   }
+
+
+
+
+// function mouseClicked() {
+//   if (screen === "MENU") {
+//     screen = "GAME";
+//   } 
+// }
