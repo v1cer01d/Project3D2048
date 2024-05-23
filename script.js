@@ -15,9 +15,10 @@ var started = false;
 let grid = [];
 let score = 0;
 const GRID_SIZE = 4;
-var GRID_WIDTH = 50;
-var SHIFT_X = 150;
-var SHIFT_Y = 150;
+const GRID_WIDTH = 100;
+const SHIFT_X = 100;
+const SHIFT_Y = 100;
+
 
 function initGrid() {
   if (!started) {
@@ -56,10 +57,30 @@ function initGrid() {
 }
 
 function generateNewTile() {
-  
-}
+  let availableCells = [];
+    for (let i = 0; i < GRID_SIZE; i++) {
+      for (let j = 0; j < GRID_SIZE; j++) {
+        if (grid[i][j] === 0) {
+          availableCells.push({ x: i, y: j });
+        }
+      }
+    }
+    if (availableCells.length > 0) {
+      let spot = random(availableCells);
+      grid[spot.x][spot.y] = random([2, 4]);
+    }
+  }
 
 function keyPressed() {
+  // if (keyCode == LEFT_ARROW) {
+  //   moveLeft();
+  // } else if (keyCode == RIGHT_ARROW) {
+  //   moveRight();
+  // } else if (keyCode == UP_ARROW) {
+  //   moveUp();
+  // } else if (keyCode == DOWN_ARROW) {
+  //   moveDown();
+  // }
   
 }
 
@@ -100,7 +121,7 @@ function draw() {
     scoreElem.style('color', 'white');
 
     fill('#1B5222');
-    rect(100, 50, 400, 600);
+    rect(100, 100, 400, 400);
     
     fill('white');
     text('2048', 280, 25);
@@ -113,6 +134,8 @@ function draw() {
   } 
 
 }
+
+
 
 function startGame() {
   screen = "GAME";
